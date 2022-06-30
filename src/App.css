@@ -1,11 +1,24 @@
 h1{
-  margin: 3%;
+  color: black;
+  padding: 3rem 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Staatliches';
+  letter-spacing: 1px;
 }
 h2{
-  margin: 5%;
+  color: black;
+  padding: 3rem 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Staatliches';
+  letter-spacing: 1px;
 }
 form{
   background-color: red;
+}
+h5{
+  margin-top: 3%;
 }
 .info{
   width: 100%;
@@ -14,8 +27,17 @@ form{
 }
 textarea{
   height: 100px;
+  margin-bottom: 5%;
 }
 .carta{
   width: 18rem;
   width: 100%;
+  border-radius: 10px;
+}
+.card-text{
+  stroke: black;
+}
+.boton-eliminar{
+  width: 90%;
+  margin-bottom: 2%;
 }
