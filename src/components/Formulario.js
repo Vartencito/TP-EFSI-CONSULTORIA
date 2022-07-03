@@ -3,12 +3,8 @@ import Carta from './Carta.js'
 
 const Formulario=()=> {
 
-    // const [sintomas, setSintomas] = useState[''];
-    
-    // const [dueño, setDueño] = useState('');
-    // const [mascota, setMascota] = useState('');
-    // const [fecha, setFecha] = useState([]);
-    // const [hora, setHora] = useState([]);
+    const [citas, setCitas] = useState([]);
+
     const [datos, setDatos] = useState({
         mascota: '',
         dueño: '',
@@ -17,44 +13,35 @@ const Formulario=()=> {
         sintomas: ''
     });
     
-    // const handleChangeMascota = event => {
-    //     setMascota(event.target.value);
-    //     console.log(mascota);
-    // }; 
-    // const handleChangeDueño = event => {
-    //     setDueño(event.target.value);
-    //     console.log(dueño);
-    // };
-    // const handleChangeFecha = event => {
-    //     setFecha(event.target.value);
-    //     console.log(event.target.value);
-    // };
-    // const handleChangeHora = event => {
-    //     setHora(event.target.value);
-    //     console.log(hora);
-    // }; 
-    // const enviarDatos =()=>{
-    //     setDatos(mascota, dueño , fecha, hora);
-    //     console.log(datos);
-    // }
+    const handleSubmit =(e)=>{
+      e.preventDefault();
+      while(citas.length == 0){
+        setCitas([datos]);
+      }
+      setCitas([...citas, datos]);
+      console.log(datos)
+      console.log(citas)
+    }
 
 
   return (
     <div className="container">
         <div className="row estructura">
             <div className="col-6">
-                <h2>CREAR MI CITA</h2>
-                <h5>Nombre de la mascota</h5>
-                <input placeholder="Mascota" className="info" onChange={handleChangeDatos}></input>
-                <h5>Nombre del dueño</h5>
-                <input placeholder="Dueño" className="info"></input>
-                <h5>Fecha</h5>
-                <input placeholder="Fecha" className="info" type="date"></input>
-                <h5>Hora</h5>
-                <input placeholder="Hora" className="info" type="time"></input>
-                <h5>Síntomas</h5>
-                <textarea className="info"></textarea>
-                <button type="button" className="btn btn-info info">Agregar Cita</button>
+                <form onSubmit={handleSubmit}>
+                  <h2>CREAR MI CITA</h2>
+                  <h5>Nombre de la mascota</h5>
+                  <input placeholder="Mascota" className="info" value={datos.mascota} onChange={e => setDatos ({...datos, mascota: e.target.value})}/>
+                  <h5>Nombre del dueño</h5>
+                  <input placeholder="Dueño" className="info" value={datos.dueño} onChange={e => setDatos ({...datos, dueño: e.target.value})}/>
+                  <h5>Fecha</h5>
+                  <input placeholder="Fecha" className="info" type="date" value={datos.fecha} onChange={e => setDatos ({...datos, fecha: e.target.value})}/>
+                  <h5>Hora</h5>
+                  <input placeholder="Hora" className="info" type="time" value={datos.hora} onChange={e => setDatos ({...datos, hora: e.target.value})}/>
+                  <h5>Síntomas</h5>
+                  <textarea className="info" value={datos.sintomas} onChange={e => setDatos ({...datos, sintomas: e.target.value})}/>
+                  <button type="submit" className="btn btn-info info">Agregar Cita</button>
+                </form>  
             </div>
           <div className="col-6">
             <Carta />
