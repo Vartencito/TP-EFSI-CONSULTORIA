@@ -1,11 +1,13 @@
 import React, {useState} from 'react'
 import Carta from './Carta.js'
+import { v4 as uuidv4 } from 'uuid';
 
 const Formulario=()=> {
 
     const [citas, setCitas] = useState([]);
 
     const [datos, setDatos] = useState({
+        id: null,
         mascota: '',
         dueño: '',
         fecha: '',
@@ -15,12 +17,8 @@ const Formulario=()=> {
     
     const handleSubmit =(e)=>{
       e.preventDefault();
-      while(citas.length == 0){
-        setCitas([datos]);
-      }
-      setCitas([...citas, datos]);
+      setCitas(citas => [...citas, datos]);
       console.log(datos)
-      console.log(citas)
     }
 
 
@@ -40,7 +38,7 @@ const Formulario=()=> {
                   <input placeholder="Hora" className="info" type="time" value={datos.hora} onChange={e => setDatos ({...datos, hora: e.target.value})}/>
                   <h5>Síntomas</h5>
                   <textarea className="info" value={datos.sintomas} onChange={e => setDatos ({...datos, sintomas: e.target.value})}/>
-                  <button type="submit" className="btn btn-info info">Agregar Cita</button>
+                  <button type="submit" className="btn btn-info info" onClick={e => setDatos ({...datos, id: uuidv4()})}>Agregar Cita</button>
                 </form>  
             </div>
           <div className="col-6">
